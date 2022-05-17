@@ -1,0 +1,14 @@
+.link {
+  color: #21b6a8;
+}
+.link:hover {
+  color: orange;
+  cursor: pointer;
+}
+.title:hover {
+  color: #21b6a8;
+}
+.shop {
+  border-color: #21b6a8;
+  color: #21b6a8;
+}
