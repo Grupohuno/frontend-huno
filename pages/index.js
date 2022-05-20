@@ -32,7 +32,6 @@ export default function Home() {
         </div>
         <div className={styles.grid}>
           {products.map((product, i) => {
-            console.log(product);
             return (
               <div className={styles.card}>
                 <ProductCard key={i} props={product} />
