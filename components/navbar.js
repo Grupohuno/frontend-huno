@@ -25,11 +25,12 @@ const Navbar = () => {
     setQuery(event.target.value);
   }
 
-  const handleSearch = () => {
+  const handleSearch = (event) => {
     Router.push({
       pathname: '/catalog',
       query: { search: query },
     })
+    event.preventDefault();
   }
   
   return (
@@ -44,9 +45,11 @@ const Navbar = () => {
         <li>
           <Link href={"/about"}>About Us</Link>
         </li>
+        <form onSubmit={handleSearch}>
         <li>
           <TextField onChange={handleQueryChange} className={classes.searchField} label="Buscar" variant="outlined" size="small" />
         </li>
+        </form>
         <li>
           <IconButton onClick={handleSearch} /* href={query ? `/catalog&search=${query}` : '/catalog'} */>
             <SearchIcon />

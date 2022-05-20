@@ -13,7 +13,7 @@ const Product = () => {
   const fetchProduct = async () => {
     try {
       const response = await axios.get(
-        process.env.NEXT_PUBLIC_LOCAL_URL + "products/" + pid
+        process.env.NEXT_PUBLIC_HEROKU_URL + "product/" + pid
       );
       setProduct(response.data);
       setLoading(false);
@@ -32,14 +32,15 @@ const Product = () => {
     return (
       <div className={styles.container}>
         <div className={styles.image}>
-          <img src={product.photoUrl} />
+          <img src={product.image} />
         </div>
         <div className={styles.info}>
           <h1>{product.name}</h1>
           <h2>${product.price}</h2>
-          <p>{product.description}</p>
-          <p>Vendido por: {product.seller}</p>
-          <Button href={product.link} size="small">
+          <p>{product.category}</p>
+          <p>{product.brand}</p>
+          <p>Vendido por: {product.store}</p>
+          <Button href={product.redirect_page} size="small">
             Ir a la tienda
           </Button>
         </div>
