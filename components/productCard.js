@@ -12,7 +12,7 @@ import cardStyles from "../styles/Card.module.css";
 
 export default function ProductCard({ props }) {
   const [descExpanded, setDescExpanded] = useState(false);
-  const { id, name, category, brand, size, redirect_page, price, image, store } = props;
+  const { id, name, category, brand, size, redirect_page, price, image, store, height, width } = props;
   const handleExpand = () => {
     setDescExpanded(!descExpanded);
   };
@@ -27,7 +27,7 @@ export default function ProductCard({ props }) {
 `;
 
   return (
-    <Card sx={{ minHeight: 355, height: "auto", width: 345 }}>
+    <Card sx={{ height: height, width: width }}>
       <CardMedia
         component="img"
         height="190"
@@ -42,7 +42,7 @@ export default function ProductCard({ props }) {
           <a className={cardStyles.title} href={`/products/${id}`}>{name}</a>
         </Typography>
         <Typography
-          style={{ minHeight: 60, height: "auto" }}
+          style={{ minHeight: 30, height: "auto" }}
           variant="body2"
           color="text.secondary"
         >
@@ -55,11 +55,15 @@ export default function ProductCard({ props }) {
             </a>
           ) : null} */}
         </Typography>
-        <Typography variant="h6" color="text.secondary">
-          ${price}
-        </Typography>
-        <CardActions style={{alignItems: 'flex-end', justifyContent: 'right'}}>
-          <StyledButton variant="outlined" href={redirect_page} size="small">
+
+ 
+        <CardActions style={{flexDirection: "row"}}>
+
+          <Typography style={{width: "50%"}} variant="h6" color="text.secondary">
+            ${price}
+          </Typography>
+        
+          <StyledButton style={{width: "50%"}} variant="outlined" href={redirect_page} size="small">
             Ir a la tienda
           </StyledButton>
         </CardActions>

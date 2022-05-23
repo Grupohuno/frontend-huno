@@ -9,7 +9,7 @@ export default function Home() {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        process.env.NEXT_PUBLIC_HEROKU_URL + "products/"
+        process.env.NEXT_PUBLIC_LOCAL_URL + "products/"
       );
       setProducts(response.data.slice(0, 5));
     } catch (error) {
@@ -34,7 +34,7 @@ export default function Home() {
           {products.map((product, i) => {
             return (
               <div className={styles.card}>
-                <ProductCard key={i} props={product} />
+                <ProductCard key={i} props={{...product, height: 500, width: 345}} />
               </div>
             );
           })}

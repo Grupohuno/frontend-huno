@@ -1,11 +1,12 @@
 import { React, useState } from "react";
-import navbarStyles from "../styles/Navbar.module.css";
 import Link from "next/link";
 import { IconButton, TextField } from "@mui/material";
 import { createStyles, makeStyles } from '@mui/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import Router from 'next/router';
+import CatalogMenu from "./catalogMenu";
 
+import navbarStyles from "../styles/Navbar.module.css";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -40,7 +41,7 @@ const Navbar = () => {
           <Link href={"/"}>Home</Link>
         </li>
         <li>
-          <Link href={"/catalog"}>Catálogo</Link>
+          <CatalogMenu/>
         </li>
         <li>
           <Link href={"/about"}>About Us</Link>
