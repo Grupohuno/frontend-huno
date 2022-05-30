@@ -39,11 +39,11 @@ export default function Home() {
             TomaTodo
           </p>
         </div>
+        <h1 style={{marginLeft: 15}}>Productos destacados</h1>
         {Object.keys(products).map((category, i) => {
           return (
             <>
-            <h1>Productos destacados</h1>
-            <h2>{category}</h2>
+            <h2 style={{marginLeft: 20, color: '#21b6a8'}}>{category}</h2>
             <div key={i} className={styles.grid}>
               {products[category].map((product, i) => {
                 return (
