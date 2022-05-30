@@ -5,6 +5,7 @@ import { createStyles, makeStyles } from '@mui/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import Router from 'next/router';
 import CatalogMenu from "./catalogMenu";
+import CloseIcon from '@mui/icons-material/Close';
 
 import navbarStyles from "../styles/Navbar.module.css";
 
@@ -27,11 +28,17 @@ const Navbar = () => {
   }
 
   const handleSearch = (event) => {
-    Router.push({
-      pathname: '/catalog',
-      query: { search: query },
-    })
-    event.preventDefault();
+    if (query !== '') {
+      Router.push({
+        pathname: '/catalog',
+        query: { search: query },
+      })
+      event.preventDefault();
+    }
+  }
+
+  const handleClear = () => {
+    setQuery('');
   }
   
   return (
@@ -48,7 +55,10 @@ const Navbar = () => {
         </li>
         <form onSubmit={handleSearch}>
         <li>
-          <TextField onChange={handleQueryChange} className={classes.searchField} label="Buscar" variant="outlined" size="small" />
+          <TextField onChange={handleQueryChange} className={classes.searchField} label="Buscar" variant="outlined" size="small" value={query} />
+          <IconButton onClick={handleClear}>
+            <CloseIcon />
+          </IconButton>
         </li>
         </form>
         <li>

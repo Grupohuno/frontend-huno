@@ -5,13 +5,19 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState({'Bebida': [], 'Cerveza': [], 'Pisco': []});
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        process.env.NEXT_PUBLIC_LOCAL_URL + "products/"
+        process.env.NEXT_PUBLIC_HEROKU_URL + "products/"
       );
-      setProducts(response.data.slice(0, 5));
+      const hotProducts = {'Bebida': [], 'Cerveza': [], 'Pisco': []}
+      response.data.forEach((product) => {
+        if (hotProducts[product.category].length < 5) {
+          hotProducts[product.category].push(product);
+        }
+      })
+      setProducts(hotProducts);
     } catch (error) {
       console.error(error);
     }
@@ -30,15 +36,24 @@ export default function Home() {
         <div className={styles.landing}>
           <img src="landing.jpg" />
         </div>
-        <div className={styles.grid}>
-          {products.map((product, i) => {
-            return (
-              <div className={styles.card}>
-                <ProductCard key={i} props={{...product, height: 500, width: 345}} />
-              </div>
-            );
-          })}
-        </div>
+        {Object.keys(products).map((category, i) => {
+          return (
+            <>
+            <h1>Productos destacados</h1>
+            <h2>{category}</h2>
+            <div key={i} className={styles.grid}>
+              {products[category].map((product, i) => {
+                return (
+                  <div key={i} className={styles.card}>
+                    <ProductCard key={i} props={{...product, height: 500, width: 345}} />
+                  </div>
+                );
+              })}
+            </div>
+            </>
+          )
+        })}
+        
       </main>
 
       <footer className={styles.footer}>Powered by Grupohuno</footer>

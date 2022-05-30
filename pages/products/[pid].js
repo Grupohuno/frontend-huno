@@ -13,7 +13,7 @@ const Product = () => {
   const fetchProduct = async () => {
     try {
       const response = await axios.get(
-        process.env.NEXT_PUBLIC_LOCAL_URL + "products/" + pid
+        process.env.NEXT_PUBLIC_HEROKU_URL + "product/" + pid
       );
       setProduct(response.data);
       setLoading(false);

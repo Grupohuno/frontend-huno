@@ -9,7 +9,7 @@ import { Link } from "@mui/material";
 export default function CatalogMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const query = (query)=> Router.push({
+  const query = (query) => Router.push({
     pathname: '/catalog',
     query: { category: query },
   });
@@ -40,9 +40,9 @@ export default function CatalogMenu() {
         }}
       >
         <MenuItem onClick={() => Router.push('/catalog')}>Todos</MenuItem>
-        <MenuItem onClick={() => query("piscos")}>Piscos</MenuItem>
-        <MenuItem onClick={() => query("cervezas")}>Cervezas</MenuItem>
-        <MenuItem onClick={() => query("bebidas")}>Bebidas</MenuItem>
+        <MenuItem onClick={() => query("pisco")}>Piscos</MenuItem>
+        <MenuItem onClick={() => query("cerveza")}>Cervezas</MenuItem>
+        <MenuItem onClick={() => query("bebida")}>Bebidas</MenuItem>
       </Menu>
     </div>
   );
