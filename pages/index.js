@@ -29,6 +29,9 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.landing}>
           <img src="landing.jpg" />
+          <p id="text">
+            TomaTodo
+          </p>
         </div>
         <div className={styles.grid}>
           {products.map((product, i) => {
