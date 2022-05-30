@@ -35,6 +35,9 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.landing}>
           <img src="landing.jpg" />
+          <p id="text">
+            TomaTodo
+          </p>
         </div>
         {Object.keys(products).map((category, i) => {
           return (
