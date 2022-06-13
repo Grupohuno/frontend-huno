@@ -20,21 +20,22 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import RangeSlider from './slider';
 
 const drawerWidth = 240;
 
 function CatalogSidebar({ children, props }) {
-  const { products, setProducts, categories, brands, sellers, window } = props;
+  const { categories, brands, stores, window, filters, setFilters } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [dropdownOpens, setDropdownOpens] = React.useState({
       'Filtros seleccionados': true,
-      'Categoría': true,
-      'Marca': true,
-      'Precio': true,
-      'Vendido por': true,
+      'Categoría': false,
+      'Marca': false,
+      'Precio': false,
+      'Vendido por': false,
   })
-  const [filters, setFilters] = React.useState(['hola']);
 
+  // TO DO: add button for responsive view open/close
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -49,36 +50,46 @@ function CatalogSidebar({ children, props }) {
   }
 
   const handleFilterDelete = (filter) => {
+      const filterType = filter.split(":")[0];
       setFilters((prevFilters) => {
-          const newFilters = [...prevFilters];
-          return newFilters.filter((f) => f != filter);
+          const newFilters = {...prevFilters};
+          newFilters[filterType] = newFilters[filterType].filter((f) => f != filter.split(":")[1]);
+          return newFilters;
       })
   }
 
-  const handleAddFilter = (filter) => {
-    setFilters((prevFilters) => {
-        newFilters = [...prevFilters];
-        newFilters.push(filter);
+  const handleAddFilter = (filter, type) => {
+    if (!filters[type].includes(filter)) {
+      setFilters((prevFilters) => {
+        const newFilters = {...prevFilters};
+        newFilters[type].push(filter);
         return newFilters;
-    })
+      })
+    }
   }
 
-  // filter products when filters change
-  React.useEffect(() => {
-
-  }, [filters])
-
   const showItems = (items, type) => {
+    const totalFilters = [];
+    if (type === "filter") {
+      Object.keys(items).forEach((filterType) => {
+        if (filterType !== "priceRange") {
+          items[filterType].forEach((item) => totalFilters.push(`${filterType}:${item}`));
+        } else {
+          totalFilters.push(`Precio: $${items[filterType][0]}-$${items[filterType][1]}`)
+        }
+      })
+    }
+    const filterItems = type === "filter" ? totalFilters : items;
     return (
         <Stack direction="row" spacing={1}>
-            {items ? items.map((i) => {
+            {filterItems ? filterItems.map((item, i) => {
                 return (
                   <Chip
                     key={i}
-                    label={`${i}`}
+                    label={type === "filter" && item.split(":")[0] !== "Precio" ? `${item.split(":")[1]}` : `${item}`}
                     variant="outlined"
-                    onDelete={type === 'filter' ? () => handleFilterDelete(i) : null}
-                    onClick={type !== 'filter' ? () => handleAddFilter(`${type}: i`) : null}
+                    onDelete={type === 'filter' && item.split(":")[0] !== "Precio" ? () => handleFilterDelete(item) : null}
+                    onClick={type !== 'filter' ? () => handleAddFilter(item, type) : null}
                   />
                 );
             }) : null}
@@ -88,13 +99,13 @@ function CatalogSidebar({ children, props }) {
 
   const listItem = (text) => {
     if (text === 'Filtros seleccionados') {
-        showItems(filters, 'filter');
+        return showItems(filters, 'filter');
     } else if (text === 'Categoría') {
-        showItems(categories, 'category');
+        return showItems(categories, 'category');
     } else if (text === 'Marca') {
-        showItems(brands, 'brand');
+        return showItems(brands, 'brand');
     } else if (text === 'Vendido por') {
-        showItems(sellers, 'seller');
+        return showItems(stores, 'store');
     }
   }
 
@@ -107,25 +118,37 @@ function CatalogSidebar({ children, props }) {
           "Marca",
           "Precio",
           "Vendido por",
-        ].map((text) => (
+        ].map((text, i) => (
           <>
-            <ListItem key={text} disablePadding>
+            <ListItem key={i} disablePadding>
               <ListItemButton onClick={() => handleDropdown(text)}>
                 <ListItemText primary={text} />
-                {text !== 'Filtros seleccionados' ? <ListItemIcon>
-                  {dropdownOpens[text] ? (
-                    <KeyboardArrowUpIcon />
-                  ) : (
-                    <KeyboardArrowDownIcon />
-                  )}
-                </ListItemIcon> : null}
+                {text !== "Filtros seleccionados" && (
+                  <ListItemIcon>
+                    {dropdownOpens[text] ? (
+                      <KeyboardArrowUpIcon />
+                    ) : (
+                      <KeyboardArrowDownIcon />
+                    )}
+                  </ListItemIcon>
+                )}
               </ListItemButton>
             </ListItem>
-            {dropdownOpens[text] ? (
-              <ListItem key={`${text}-dropdown`} disablePadding>
-                  {listItem(text)}
+            {dropdownOpens[text] && (
+              <ListItem
+                key={`${text}-dropdown`}
+                disablePadding
+                style={{
+                  alignItems: text === "Precio" ? "center" : "flex-start",
+                  justifyContent: text !== "Precio" ? "left" : "center",
+                  overflow: "auto",
+                  height: text === "Precio" ? 100 : null,
+                  marginLeft: text !== "Precio" ? 10 : 0,
+                }}
+              >
+                {text !== "Precio" ? listItem(text) : <RangeSlider props={{filters, setFilters}} />}
               </ListItem>
-            ) : null}
+            )}
           </>
         ))}
       </List>
