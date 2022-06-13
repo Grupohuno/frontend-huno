@@ -1,5 +1,5 @@
-import React from 'react'
-import Head from 'next/head'
+import React from "react";
+import Head from "next/head";
 
 const About = () => {
   return (
@@ -22,6 +22,6 @@ const About = () => {
       </p>
     </div>
   );
-}
+};
 
-export default About
+export default About;

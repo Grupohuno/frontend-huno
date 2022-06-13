@@ -1,16 +1,13 @@
-import React from 'react'
-import layoutStyles from '../styles/Layout.module.css'
-import Navbar from './navbar'
-
+import React from "react";
+import Navbar from "./navbar";
+import layoutStyles from "../styles/Layout.module.css";
 const Layout = ({ children }) => {
   return (
     <>
-        <Navbar />
-        <div className={layoutStyles.container}>
-            {children}
-        </div>
+      <Navbar />
+      <div className={layoutStyles.container}>{children}</div>
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
