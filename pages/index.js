@@ -9,11 +9,11 @@ export default function Home() {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        process.env.NEXT_PUBLIC_HEROKU_URL + "products/"
+        process.env.NEXT_PUBLIC_LOCAL_URL + "products/"
       );
       const hotProducts = {'Bebida': [], 'Cerveza': [], 'Pisco': []}
       response.data.forEach((product) => {
-        if (hotProducts[product.category].length < 5) {
+        if (['Bebida', 'Cerveza', 'Pisco'].includes(product.category) && hotProducts[product.category].length < 5) {
           hotProducts[product.category].push(product);
         }
       })
@@ -34,7 +34,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <div className={styles.landing}>
-          <img src="landing.jpg" />
+          <img src="landing.jpg" alt="landing image"/>
           <p id="text">
             TomaTodo
           </p>
@@ -42,7 +42,7 @@ export default function Home() {
         <h1 style={{marginLeft: 15}}>Productos destacados</h1>
         {Object.keys(products).map((category, i) => {
           return (
-            <>
+            <div key={i}>
             <h2 style={{marginLeft: 20, color: '#21b6a8'}}>{category}</h2>
             <div key={i} className={styles.grid}>
               {products[category].map((product, i) => {
@@ -53,7 +53,7 @@ export default function Home() {
                 );
               })}
             </div>
-            </>
+            </div>
           )
         })}
         

@@ -48,21 +48,31 @@ const Navbar = () => {
           <Link href={"/"}>Home</Link>
         </li>
         <li>
-          <CatalogMenu/>
+          <CatalogMenu />
         </li>
         <li>
           <Link href={"/about"}>About Us</Link>
         </li>
         <form onSubmit={handleSearch}>
-        <li>
-          <TextField onChange={handleQueryChange} className={classes.searchField} label="Buscar" variant="outlined" size="small" value={query} />
-          <IconButton onClick={handleClear}>
-            <CloseIcon />
-          </IconButton>
-        </li>
+          <li>
+            <TextField
+              onChange={handleQueryChange}
+              label="Buscar"
+              variant="outlined"
+              size="small"
+              value={query}
+            />
+            <IconButton onClick={handleClear}>
+              <CloseIcon />
+            </IconButton>
+          </li>
         </form>
         <li>
-          <IconButton onClick={handleSearch} /* href={query ? `/catalog&search=${query}` : '/catalog'} */>
+          <IconButton
+            onClick={
+              handleSearch
+            } /* href={query ? `/catalog&search=${query}` : '/catalog'} */
+          >
             <SearchIcon />
           </IconButton>
         </li>

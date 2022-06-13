@@ -12,14 +12,14 @@ const Catalog = () => {
   const fetchProducts = async () => {
     try {
       const url = router.query.category
-        ? process.env.NEXT_PUBLIC_HEROKU_URL +
+        ? process.env.NEXT_PUBLIC_LOCAL_URL +
           "products/" +
           router.query.category
         : router.query.search
-        ? process.env.NEXT_PUBLIC_HEROKU_URL +
+        ? process.env.NEXT_PUBLIC_LOCAL_URL +
           "product-search?keyword=" +
           router.query.search
-        : process.env.NEXT_PUBLIC_HEROKU_URL + "products/";
+        : process.env.NEXT_PUBLIC_LOCAL_URL + "products/";
       const response = await axios.get(url);
       setProducts(response.data);
     } catch (error) {

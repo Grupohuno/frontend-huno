@@ -41,21 +41,6 @@ export default function ProductCard({ props }) {
         <Typography gutterBottom variant="h5" component="div">
           <a className={cardStyles.title} href={`/products/${id}`}>{name}</a>
         </Typography>
-        <Typography
-          style={{ minHeight: 30, height: "auto" }}
-          variant="body2"
-          color="text.secondary"
-        >
-          {/* {description.length >= 80 && !descExpanded
-            ? description.slice(0, 80)
-            : description}
-          {description.length >= 80 ? (
-            <a className={cardStyles.link} onClick={handleExpand}>
-              {descExpanded ? "...Ver menos" : "...Ver mas"}
-            </a>
-          ) : null} */}
-        </Typography>
-
  
         <CardActions style={{flexDirection: "row"}}>
 

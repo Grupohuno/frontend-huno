@@ -74,6 +74,7 @@ function CatalogSidebar({ children, props }) {
             {items ? items.map((i) => {
                 return (
                   <Chip
+                    key={i}
                     label={`${i}`}
                     variant="outlined"
                     onDelete={type === 'filter' ? () => handleFilterDelete(i) : null}
