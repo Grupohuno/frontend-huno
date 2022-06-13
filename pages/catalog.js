@@ -50,7 +50,7 @@ const Catalog = () => {
           (filters["store"].includes(p.store) || filters["store"].length === 0) &&
           (filters["priceRange"][0] <= p.price && filters["priceRange"][1] >= p.price)
       );
-    })
+    });
   }, [filters])
 
   return (
