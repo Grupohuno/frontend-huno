@@ -7,7 +7,7 @@ const About = () => {
       <Head>
         <title>About Grupohuno</title>
       </Head>
-      <h1>About Us</h1>
+      <h1 id="aboutTitle">About Us</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt
         laoreet dui molestie bibendum. Aliquam accumsan, mauris ut sagittis
