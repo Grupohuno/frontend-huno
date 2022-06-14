@@ -50,8 +50,8 @@ const Navbar = () => {
         <li>
           <CatalogMenu />
         </li>
-        <li>
-          <Link href={"/about"}>About Us</Link>
+        <li id={"aboutNavbar"}>
+          <Link href={"/about"} >About Us</Link>
         </li>
         <form onSubmit={handleSearch}>
           <li>
