@@ -9,10 +9,10 @@ export default function Home() {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        process.env.NEXT_PUBLIC_LOCAL_URL + "products/"
+        process.env.NEXT_PUBLIC_HEROKU_URL + "products/"
       );
       const hotProducts = {'Bebida': [], 'Cerveza': [], 'Pisco': []}
-      response.data.forEach((product) => {
+      response.data.results.forEach((product) => {
         if (['Bebida', 'Cerveza', 'Pisco'].includes(product.category) && hotProducts[product.category].length < 5) {
           hotProducts[product.category].push(product);
         }

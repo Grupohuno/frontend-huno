@@ -15,18 +15,18 @@ const Catalog = () => {
   const fetchProducts = async () => {
     try {
       const url = router.query.category
-        ? process.env.NEXT_PUBLIC_LOCAL_URL +
-          "products/" +
+        ? process.env.NEXT_PUBLIC_HEROKU_URL +
+          "products/category/" +
           router.query.category
         : router.query.search
-        ? process.env.NEXT_PUBLIC_LOCAL_URL +
-          "product-search?keyword=" +
+        ? process.env.NEXT_PUBLIC_HEROKU_URL +
+          "product-search/?keyword=" +
           router.query.search
-        : process.env.NEXT_PUBLIC_LOCAL_URL + "products/";
+        : process.env.NEXT_PUBLIC_HEROKU_URL + "products/";
       const response = await axios.get(url);
-      setProducts(response.data);
-      setVisibleProducts(response.data);
-      setBrands(response.data.map((p) => {
+      setProducts(response.data.results);
+      setVisibleProducts(response.data.results);
+      setBrands(response.data.results.map((p) => {
           if (!brands.includes(p.brand)) return p.brand;
         }
       ));
