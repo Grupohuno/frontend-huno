@@ -44,7 +44,7 @@ const Navbar = () => {
   return (
     <nav className={navbarStyles.nav}>
       <ul>
-        <li>
+        <li id={"homeNavbar"}>
           <Link href={"/"}>Home</Link>
         </li>
         <li>
