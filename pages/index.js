@@ -12,7 +12,7 @@ export default function Home() {
         process.env.NEXT_PUBLIC_BACKEND_URL + "products/"
       );
       const hotProducts = {'Bebida': [], 'Cerveza': [], 'Pisco': []}
-      response.data.forEach((product) => {
+      response.data.results.forEach((product) => {
         if (['Bebida', 'Cerveza', 'Pisco'].includes(product.category) && hotProducts[product.category].length < 5) {
           hotProducts[product.category].push(product);
         }
