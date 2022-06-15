@@ -9,7 +9,7 @@ export default function Home() {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        process.env.NEXT_PUBLIC_LOCAL_URL + "products/"
+        process.env.NEXT_PUBLIC_BACKEND_URL + "products/"
       );
       const hotProducts = {'Bebida': [], 'Cerveza': [], 'Pisco': []}
       response.data.forEach((product) => {
@@ -23,7 +23,6 @@ export default function Home() {
     }
   };
   useEffect(() => fetchProducts(), []);
-
   return (
     <div>
       <Head>

@@ -27,11 +27,8 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Run app
-      run: npm run dev
-
     - name: Run the tests
-      run: npx cypress run
+      run: start-server-and-test start http://localhost:3000 cypress:run
 
     - name: Run linter
       run: npm run lint
