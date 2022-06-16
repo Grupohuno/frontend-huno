@@ -20,7 +20,7 @@ const Catalog = () => {
           router.query.category
         : router.query.search
         ? process.env.NEXT_PUBLIC_BACKEND_URL +
-          "product-search?keyword=" +
+          "product-search/?keyword=" +
           router.query.search
         : process.env.NEXT_PUBLIC_BACKEND_URL + "products/";
       const response = await axios.get(url);
