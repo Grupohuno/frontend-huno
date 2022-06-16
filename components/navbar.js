@@ -44,18 +44,19 @@ const Navbar = () => {
   return (
     <nav className={navbarStyles.nav}>
       <ul>
-        <li>
+        <li id={"homeNavbar"}>
           <Link href={"/"}>Home</Link>
         </li>
         <li>
           <CatalogMenu />
         </li>
-        <li>
-          <Link href={"/about"}>About Us</Link>
+        <li id={"aboutNavbar"}>
+          <Link href={"/about"} >About Us</Link>
         </li>
         <form onSubmit={handleSearch}>
           <li>
             <TextField
+              id="searchField"
               onChange={handleQueryChange}
               label="Buscar"
               variant="outlined"
@@ -69,6 +70,7 @@ const Navbar = () => {
         </form>
         <li>
           <IconButton
+            id="searchButton"
             onClick={
               handleSearch
             } /* href={query ? `/catalog&search=${query}` : '/catalog'} */
