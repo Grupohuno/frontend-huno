@@ -47,7 +47,7 @@ const Navbar = () => {
         <li>
           <Link href={"/"}>Home</Link>
         </li>
-        <li>
+        <li id={"catalogNavbar"}>
           <CatalogMenu />
         </li>
         <li id={"aboutNavbar"}>
