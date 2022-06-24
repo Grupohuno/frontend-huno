@@ -16,5 +16,5 @@ describe('search spec', () => {
     cy.get('#searchField').invoke('val').should('eq', '');
     cy.get("#searchButton").click()
     cy.url().should('eq', 'http://localhost:3000/catalog?search=cerveza')
-  })
+  })  
 })

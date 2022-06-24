@@ -22,15 +22,12 @@ const Product = () => {
       );
       setProduct(response.data);
       setSimilarProduct(response.data.recommended_products);
-
       setLoading(false);
     } catch (error) {
       setError(error);
       console.error(error);
     }
   };
-
-
 
   useEffect(() => {
     if (pid) fetchProduct();

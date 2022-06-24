@@ -110,6 +110,7 @@ const Catalog = () => {
     } else setNoProductsText(false);
   }, [visibleProducts]);
 
+
   return (
     <CatalogSidebar props={{categories, brands, stores, filters, setFilters}}>
       <div>
