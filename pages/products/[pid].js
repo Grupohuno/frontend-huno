@@ -80,8 +80,8 @@ const Product = () => {
       <h2 style={{marginLeft:"12vh"}}>Tambien te puede interesar </h2>
       <Carousel collapse={false} splitIndex={1} >
       
-          {similarProducts.map(p => (
-            <SimilarProductCard  props={p}/>
+          {similarProducts.map((p, i) => (
+            <SimilarProductCard key={i} props={p}/>
           ))}
         </Carousel>
   
