@@ -56,6 +56,7 @@ const Navbar = () => {
         <form onSubmit={handleSearch}>
           <li>
             <TextField
+              id="searchField"
               onChange={handleQueryChange}
               label="Buscar"
               variant="outlined"
@@ -69,6 +70,7 @@ const Navbar = () => {
         </form>
         <li>
           <IconButton
+            id="searchButton"
             onClick={
               handleSearch
             } /* href={query ? `/catalog&search=${query}` : '/catalog'} */
