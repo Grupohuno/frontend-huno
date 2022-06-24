@@ -65,7 +65,7 @@ const Catalog = () => {
         <Head>
           <title>Catálogo</title>
         </Head>
-        <h1>Catálogo</h1>
+        <h1 id={"catalogTitle"}>Catálogo</h1>
         {noProductsText && <h3>No se encontraron productos</h3>}
         <div className={styles.grid}>
           {visibleProducts.map((product, i) => {
