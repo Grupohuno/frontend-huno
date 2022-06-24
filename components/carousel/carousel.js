@@ -35,11 +35,13 @@ import React, {
     // const cardWidth = () => cardRefs.current[0].current.clientWidth;
   
     const checkIfAtEdge = () => {
-      const scrollLength = viewport.current.scrollLeft;
-      const viewportLength = viewport.current.clientWidth;
-      const totalLength = viewport.current.scrollWidth;
-      setAtRightEdge(scrollLength + viewportLength === totalLength);
-      setAtLeftEdge(scrollLength === 0);
+      if (viewport && viewport.current !== null) {
+        const scrollLength = viewport.current.scrollLeft;
+        const viewportLength = viewport.current.clientWidth;
+        const totalLength = viewport.current.scrollWidth;
+        setAtRightEdge(scrollLength + viewportLength === totalLength);
+        setAtLeftEdge(scrollLength === 0);
+      }
     };
   
     const getScrollParams = steps => {
