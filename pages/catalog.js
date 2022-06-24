@@ -7,6 +7,7 @@ import CatalogSidebar from "../components/catalogSidebar";
 import styles from "../styles/Catalog.module.css";
 import axios from "axios";
 import Pagination from '@mui/material/Pagination';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Catalog = () => {
   const router = useRouter();
@@ -88,7 +89,7 @@ const Catalog = () => {
           <title>Catálogo</title>
         </Head>
         <h1 id={"catalogTitle"}>Catálogo</h1>
-        {loading && <h3>Cargando...</h3>}
+        {loading && <div className={styles.loading}><CircularProgress /></div>}
         {noProductsText && !loading && <h3>No se encontraron productos</h3>}
         <div className={styles.grid}>
           {visibleProducts.map((product, i) => {
