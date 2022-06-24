@@ -13,6 +13,7 @@ import cardStyles from "../styles/Card.module.css";
 export default function ProductCard({ props }) {
   const [descExpanded, setDescExpanded] = useState(false);
   const { id, name, category, brand, size, redirect_page, price, image, store, height, width } = props;
+  const editedName = name.length > 40 ? name.slice(0, 40) + "..." : name;
   const handleExpand = () => {
     setDescExpanded(!descExpanded);
   };
@@ -39,7 +40,7 @@ export default function ProductCard({ props }) {
           {store}
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
-          <a className={cardStyles.title} href={`/products/${id}`}>{name}</a>
+          <a className={cardStyles.title} href={`/products/${id}`}>{editedName}</a>
         </Typography>
  
         <CardActions style={{flexDirection: "row"}}>
