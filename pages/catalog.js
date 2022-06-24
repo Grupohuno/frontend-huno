@@ -6,12 +6,16 @@ import ProductCard from "../components/productCard";
 import CatalogSidebar from "../components/catalogSidebar";
 import styles from "../styles/Catalog.module.css";
 import axios from "axios";
+import Pagination from '@mui/material/Pagination';
+
 const Catalog = () => {
   const router = useRouter();
   const [products, setProducts] = useState([]);
   const [visibleProducts, setVisibleProducts] = useState([]);
   const [brands, setBrands] = useState([]);
   const [filters, setFilters] = useState({category: [], brand: [], store: [], priceRange: [0, 300000]});
+  const [currentPage, setCurrentPage] = useState(1);
+
   const fetchProducts = async () => {
     try {
       const url = router.query.category
@@ -34,6 +38,10 @@ const Catalog = () => {
       console.error(error);
     }
   };
+
+  const handlePageChange = (event, page) => {
+    setCurrentPage(page);
+  }
 
   const categories = ['Cerveza', 'Pisco', 'Bebida'];
   const stores = ['Lider', 'Liquidos'];
@@ -68,6 +76,9 @@ const Catalog = () => {
               </div>
             );
           })}
+        </div>
+        <div className={styles.pagePicker}>
+          <Pagination onChange={handlePageChange} count={10} variant="outlined" shape="rounded" />
         </div>
       </div>
     </CatalogSidebar>
