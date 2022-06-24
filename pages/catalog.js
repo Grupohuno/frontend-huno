@@ -8,7 +8,6 @@ import styles from "../styles/Catalog.module.css";
 import axios from "axios";
 import Pagination from '@mui/material/Pagination';
 import CircularProgress from '@mui/material/CircularProgress';
-import { route } from "next/dist/server/router";
 
 const Catalog = () => {
   const router = useRouter();
