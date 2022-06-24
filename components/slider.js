@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 export default function RangeSlider({ props }) {
   const { filters, setFilters } = props;
-  const [value, setValue] = useState([0, 300000]);
+  const [value, setValue] = useState([0, 120000]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -22,7 +22,7 @@ export default function RangeSlider({ props }) {
   return (
     <Box sx={{ width: 180 }}>
       <Slider
-        max={300000}
+        max={120000}
         value={value}
         onChange={handleChange}
         onChangeCommitted={handleMouseUp}
