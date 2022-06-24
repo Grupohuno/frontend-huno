@@ -31,3 +31,17 @@
     font-size: 110%;
 
 }
+
+.pagePicker {
+  margin-top: 30px;
+  margin-right: 171px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
