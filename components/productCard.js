@@ -9,6 +9,7 @@ import Button, { ButtonProps } from '@mui/material/Button';
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import cardStyles from "../styles/Card.module.css";
+import Link from 'next/link';
 
 export default function ProductCard({ props }) {
   const [descExpanded, setDescExpanded] = useState(false);
@@ -39,7 +40,7 @@ export default function ProductCard({ props }) {
           {store}
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
-          <a className={cardStyles.title} href={`/products/${id}`}>{name}</a>
+          <Link className={cardStyles.title} href={`/products/${id}`}>{name}</Link>
         </Typography>
  
         <CardActions style={{flexDirection: "row"}}>
