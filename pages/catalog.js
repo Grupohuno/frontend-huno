@@ -22,7 +22,7 @@ const Catalog = () => {
   const [noProductsText, setNoProductsText] = useState(false);
   const [completeData, setCompleteData] = useState(false);
 
-  const fetchProducts = async (fetchAll) => {
+  const fetchProducts = async () => {
     setLoading(true);
     try {
       const url = process.env.NEXT_PUBLIC_BACKEND_URL;
