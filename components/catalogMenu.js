@@ -34,15 +34,16 @@ export default function CatalogMenu() {
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
+        onClose={handleClose}
         MenuListProps={{
           "aria-labelledby": "basic-button",
           onMouseLeave: handleClose,
         }}
       >
-        <MenuItem onClick={() => Router.push('/catalog')}>Todos</MenuItem>
-        <MenuItem onClick={() => query("pisco")}>Piscos</MenuItem>
-        <MenuItem onClick={() => query("cerveza")}>Cervezas</MenuItem>
-        <MenuItem onClick={() => query("bebida")}>Bebidas</MenuItem>
+        <MenuItem onClick={() => Router.push('/catalog')} id={"all"}>Todos</MenuItem>
+        <MenuItem onClick={() => query("pisco")} id={"piscoCategory"}>Piscos</MenuItem>
+        <MenuItem onClick={() => query("cerveza")} id={"beerCategory"}>Cervezas</MenuItem>
+        <MenuItem onClick={() => query("bebida")} id={"sodaCategory"}>Bebidas</MenuItem>
       </Menu>
     </div>
   );
