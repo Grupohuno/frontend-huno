@@ -9,6 +9,7 @@ import Button, { ButtonProps } from '@mui/material/Button';
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import cardStyles from "../styles/Card.module.css";
+import Link from 'next/link';
 
 export default function ProductCard({ props }) {
   const [descExpanded, setDescExpanded] = useState(false);
