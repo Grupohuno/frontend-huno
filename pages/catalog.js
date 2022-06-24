@@ -28,14 +28,14 @@ const Catalog = () => {
           router.query.category
         : router.query.search
         ? process.env.NEXT_PUBLIC_BACKEND_URL +
-          "product-search/?keyword=" +
+          "np/product-search/?keyword=" +
           router.query.search
-        : process.env.NEXT_PUBLIC_BACKEND_URL + "products/";
+        : process.env.NEXT_PUBLIC_BACKEND_URL + "np/products/";
       if (currentPage !== 1) url += `?page=${currentPage}`;
       const response = await axios.get(url);
-      setProducts(response.data.results);
-      setVisibleProducts(response.data.results);
-      setBrands(response.data.results.map((p) => {
+      setProducts(response.data);
+      setVisibleProducts(response.data);
+      setBrands(response.data.map((p) => {
           if (!brands.includes(p.brand)) return p.brand;
         }
       ));

@@ -6,18 +6,36 @@ import axios from "axios";
 
 export default function Home() {
   const [products, setProducts] = useState({'Bebida': [], 'Cerveza': [], 'Pisco': []});
+  const [promotions, setPromotions] = useState([]);
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        process.env.NEXT_PUBLIC_BACKEND_URL + "products/"
+        process.env.NEXT_PUBLIC_BACKEND_URL + "np/products/"
       );
       const hotProducts = {'Bebida': [], 'Cerveza': [], 'Pisco': []}
-      response.data.results.forEach((product) => {
+      const hotPromotions = [];
+      let hotBebidaPromos = 0;
+      let hotCervezaPromos = 0;
+      let hotPiscoPromos = 0;
+      response.data.forEach((product) => {
         if (['Bebida', 'Cerveza', 'Pisco'].includes(product.category) && hotProducts[product.category].length < 5) {
           hotProducts[product.category].push(product);
         }
+        if (product.is_promotion && hotPromotions.length < 5) {
+          if (product.category === "Bebida" && hotBebidaPromos < 1) {
+            hotPromotions.push(product);
+            hotBebidaPromos++;
+          } else if (product.category === "Cerveza" && hotCervezaPromos < 2) {
+            hotPromotions.push(product);
+            hotCervezaPromos++;
+          } else if (product.category === "Pisco" && hotPiscoPromos < 2) {
+            hotPromotions.push(product);
+            hotPiscoPromos++;
+          }
+        }
       })
       setProducts(hotProducts);
+      setPromotions(hotPromotions);
     } catch (error) {
       console.error(error);
     }
@@ -37,6 +55,19 @@ export default function Home() {
           <p id="text">
             TomaTodo
           </p>
+        </div>
+        <h1 style={{marginLeft: 15}}>Promociones destacadas</h1>
+        <div className={styles.grid}>
+        {promotions.map((promo, i) => {
+          return (
+            <div key={i} className={styles.card}>
+              <ProductCard
+                key={i}
+                props={{ ...promo, height: 500, width: 345 }}
+              />
+            </div>
+          );
+        })}
         </div>
         <h1 style={{marginLeft: 15}}>Productos destacados</h1>
         {Object.keys(products).map((category, i) => {
