@@ -12,6 +12,7 @@ const Catalog = () => {
   const [visibleProducts, setVisibleProducts] = useState([]);
   const [brands, setBrands] = useState([]);
   const [filters, setFilters] = useState({category: [], brand: [], store: [], priceRange: [0, 300000]});
+  const [noProductsText, setNoProductsText] = useState(false);
   const fetchProducts = async () => {
     try {
       const url = router.query.category
@@ -30,8 +31,13 @@ const Catalog = () => {
           if (!brands.includes(p.brand)) return p.brand;
         }
       ));
+      setNoProductsText(false);
     } catch (error) {
       console.error(error);
+      setProducts([]);
+      setVisibleProducts([]);
+      setBrands([]);
+      setNoProductsText(true);
     }
   };
 
@@ -39,7 +45,7 @@ const Catalog = () => {
   const stores = ['Lider', 'Liquidos'];
 
   useEffect(() => fetchProducts(), []);
-  useEffect(() => fetchProducts(), [router.query.category]);
+  useEffect(() => fetchProducts(), [router.query.category, router.query.search]);
   useEffect(() => {
     setVisibleProducts(() => {
       const newProducts = [...products];
@@ -60,6 +66,7 @@ const Catalog = () => {
           <title>Catálogo</title>
         </Head>
         <h1 id={"catalogTitle"}>Catálogo</h1>
+        {noProductsText && <h3>No se encontraron productos</h3>}
         <div className={styles.grid}>
           {visibleProducts.map((product, i) => {
             return (
