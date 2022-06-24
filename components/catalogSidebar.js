@@ -110,7 +110,7 @@ function CatalogSidebar({ children, props }) {
   }
 
   const drawer = (
-    <div>
+    <div style={{overflow: 'hidden'}}>
       <List>
         {[
           "Filtros seleccionados",
